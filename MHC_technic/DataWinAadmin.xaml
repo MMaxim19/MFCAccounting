@@ -1,0 +1,154 @@
+﻿<Window x:Class="MFC_technic.DataWinAadmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MFC_technic"
+        mc:Ignorable="d"
+        Title="Учёт оборудования - Администратор" Height="471" Width="800">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="buttonStyleAdmin" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Image Margin="0,0,2,1" Source="/mfc.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="86" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="240">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.749"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.582"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Grid x:Name="Filter" Background="#FFE6E2E2" Margin="150,350,400,0" Height="75" VerticalAlignment="Top">
+            <RadioButton x:Name="inWork" Content="В работе" HorizontalAlignment="Left" Margin="10,45,0,4" Checked="inWork_Checked"/>
+            <RadioButton x:Name="onRepair" Content="На ремонте" HorizontalAlignment="Left" Margin="125,45,0,4" Checked="onRepair_Checked"/>
+            <RadioButton x:Name="breakDown" Content="Списан" HorizontalAlignment="Left" Margin="125,18,0,31" Checked="breakDown_Checked"/>
+            <RadioButton x:Name="clearFilter" Content="Убрать фильтр" Margin="10,18,0,32" HorizontalAlignment="Left" Width="100" Checked="clearFilter_Checked"/>
+        </Grid>
+        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="89,38,10,110" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="*"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="*"/>
+                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="*"/>
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate}" Width="*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="EditButton_Click" Background="YellowGreen">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DeleteButton_Click" Background="Red">Удалить</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Background="#FFC55527" Margin="0,0,711,0">
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="" HorizontalAlignment="Center" Margin="0,382,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/back.png"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,57,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" Height="32" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/uninterrupted-power-supply.png"/>
+                </Button.Background>
+            </Button>
+            <Label Content="ИБП" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top"/>
+            <Label Content="Сервера" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,120,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" Height="32" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/server.png"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" Height="32" VerticalAlignment="Top" Margin="0,184,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/tv.png"/>
+                </Button.Background>
+            </Button>
+            <Label Content="Мониторы" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top"/>
+            <Label Content="Принтера" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,246,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" Height="32" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/printer.png"/>
+                </Button.Background>
+            </Button>
+            <Label Content="Сотрудники" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,309,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UserTable" Height="32" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/worker.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Label x:Name="serachLabel" Content="Поиск" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="139,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" TextChanged="searchBox_TextChanged"/>
+        <Button Style="{DynamicResource buttonStyleAdmin}" x:Name="AddButton" Content="Button" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" Width="32" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="AddButton_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/add-button.png"/>
+            </Button.Background>
+        </Button>
+        <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="451,7,0,0" VerticalAlignment="Top" Width="32" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="RefreshTable">
+            <Button.Background>
+                <ImageBrush ImageSource="/reload.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

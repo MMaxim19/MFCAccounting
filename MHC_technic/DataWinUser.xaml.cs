@@ -20,10 +20,10 @@ namespace MFC_technic
     /// </summary>
     public partial class DataWinUser : Window
     {
-        MFCEntities mfc;
+        MFC_Entities mfc;
         public DataWinUser()
         {
-            mfc = new MFCEntities();
+            mfc = new MFC_Entities();
             InitializeComponent();
             TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
         }

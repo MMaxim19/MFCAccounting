@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище MFC_TechnicModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EquipmentAccounting">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,12 +18,12 @@
         </EntityType>
         <EntityType Name="EquipmentModel">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID_ModelE" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ID_ModelE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EquipmentType" Type="int" />
           <Property Name="EquipmentName" Type="nvarchar(max)" />
-          <Property Name="Price" Type="int" />
+          <Property Name="Price" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EquipmentType">
           <Key>
@@ -74,7 +74,7 @@
           <End Role="EquipmentAccounting" Type="Self.EquipmentAccounting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipmentModel">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID_ModelE" />
             </Principal>
             <Dependent Role="EquipmentAccounting">
               <PropertyRef Name="Equipment" />
@@ -117,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ModelContainer">
+        <EntityContainer Name="Хранилище MFC_TechnicModelContainer">
           <EntitySet Name="EquipmentAccounting" EntityType="Self.EquipmentAccounting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentModel" EntityType="Self.EquipmentModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" Schema="dbo" store:Type="Tables" />
@@ -146,7 +146,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MFC_TechnicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="EquipmentAccounting">
           <Key>
             <PropertyRef Name="ID" />
@@ -162,12 +162,12 @@
         </EntityType>
         <EntityType Name="EquipmentModel">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID_ModelE" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ID_ModelE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EquipmentType" Type="Int32" />
           <Property Name="EquipmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EquipmentAccounting" Relationship="Self.FK_EquipmentAccounting_EquipmentModel" FromRole="EquipmentModel" ToRole="EquipmentAccounting" />
           <NavigationProperty Name="EquipmentType1" Relationship="Self.FK_EquipmentModel_EquipmentType" FromRole="EquipmentModel" ToRole="EquipmentType" />
         </EntityType>
@@ -224,7 +224,7 @@
           <End Role="EquipmentAccounting" Type="Self.EquipmentAccounting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipmentModel">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID_ModelE" />
             </Principal>
             <Dependent Role="EquipmentAccounting">
               <PropertyRef Name="Equipment" />
@@ -267,7 +267,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MFCEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MFC_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EquipmentAccounting" EntityType="Self.EquipmentAccounting" />
           <EntitySet Name="EquipmentModel" EntityType="Self.EquipmentModel" />
           <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" />
@@ -297,9 +297,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="MFCEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MFC_TechnicModelContainer" CdmEntityContainer="MFC_Entities">
           <EntitySetMapping Name="EquipmentAccounting">
-            <EntityTypeMapping TypeName="Model.EquipmentAccounting">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.EquipmentAccounting">
               <MappingFragment StoreEntitySet="EquipmentAccounting">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Equipment" ColumnName="Equipment" />
@@ -311,9 +311,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EquipmentModel">
-            <EntityTypeMapping TypeName="Model.EquipmentModel">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.EquipmentModel">
               <MappingFragment StoreEntitySet="EquipmentModel">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID_ModelE" ColumnName="ID_ModelE" />
                 <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -321,7 +321,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EquipmentType">
-            <EntityTypeMapping TypeName="Model.EquipmentType">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.EquipmentType">
               <MappingFragment StoreEntitySet="EquipmentType">
                 <ScalarProperty Name="Id_type" ColumnName="Id_type" />
                 <ScalarProperty Name="TypeEquipment" ColumnName="TypeEquipment" />
@@ -329,7 +329,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="Model.Role">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="ID_role" ColumnName="ID_role" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -337,7 +337,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="Model.Status">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="ID_status" ColumnName="ID_status" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
@@ -345,7 +345,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -356,7 +356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="Model.User">
+            <EntityTypeMapping TypeName="MFC_TechnicModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="ID_user" ColumnName="ID_user" />
                 <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />

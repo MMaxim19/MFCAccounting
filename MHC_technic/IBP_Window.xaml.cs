@@ -19,10 +19,10 @@ namespace MFC_technic
     /// </summary>
     public partial class IBP_Window : Window
     {
-        MFCEntities MFC;
+        MFC_Entities MFC;
         public IBP_Window()
         {
-            MFC= new MFCEntities();
+            MFC= new MFC_Entities();
             InitializeComponent();
             TableIBP.ItemsSource = MFC.EquipmentModel.Where(x => x.EquipmentType == 1).ToList();
         }

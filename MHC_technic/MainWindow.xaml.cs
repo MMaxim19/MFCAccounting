@@ -22,11 +22,11 @@ namespace MHC_technic
     /// </summary>
     public partial class MainWindow : Window
     {
-        MFCEntities MFC;
+        MFC_Entities MFC;
         public MainWindow()
         {
             InitializeComponent();
-            MFC = new MFCEntities();
+            MFC = new MFC_Entities();
         }
 
         private void enterButton(object sender, RoutedEventArgs e)

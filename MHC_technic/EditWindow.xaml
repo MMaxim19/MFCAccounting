@@ -5,40 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Изменение записи" Height="270" Width="578">
+        Title="Изменение записи" Height="270" Width="403" Loaded="Window_Loaded">
     <Grid>
         <Label Content="Оборудование:" HorizontalAlignment="Left" Margin="48,22,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SerialNumber" HorizontalAlignment="Left" Margin="148,57,0,0" TextWrapping="Wrap" Text="{Binding SerialNumber}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="SerialNumber" Margin="148,57,20,0" TextWrapping="Wrap" Text="{Binding SerialNumber}" VerticalAlignment="Top"/>
         <Label Content="Серийный номер:" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" x:Name="InventoryNumber" Margin="148,88,0,0" TextWrapping="Wrap" Text="{Binding InventoryNumber}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="InventoryNumber" Margin="148,88,20,0" TextWrapping="Wrap" Text="{Binding InventoryNumber}" VerticalAlignment="Top"/>
         <Label Content="Инвентарный номер:" HorizontalAlignment="Left" Margin="16,84,0,0" VerticalAlignment="Top"/>
         <Label Content="Статус:" HorizontalAlignment="Left" Margin="96,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Дата доставки:" HorizontalAlignment="Left" Margin="53,146,0,0" VerticalAlignment="Top"/>
         <Button Content="Изменить" HorizontalAlignment="Left" Margin="16,190,0,0" VerticalAlignment="Top" Height="31" Width="98" Click="editButton" BorderBrush="{x:Null}" Background="#FF7BFF00"/>
-        <Button Content="Закрыть" HorizontalAlignment="Left" Margin="172,190,0,0" VerticalAlignment="Top" Height="31" Width="96" Click="backButton" BorderBrush="{x:Null}" Background="Red"/>
-        <TextBox x:Name="Eq" HorizontalAlignment="Left" Margin="148,26,0,0" TextWrapping="Wrap" Text="{Binding Equipment}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="St" HorizontalAlignment="Left" Margin="149,119,0,0" TextWrapping="Wrap" Text="{Binding EquipmentStatus}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="dT" HorizontalAlignment="Left" Margin="149,150,0,0" TextWrapping="Wrap" Text="{Binding DeliveryDate}" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="EquipmentTable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="300,22,0,139" HorizontalAlignment="Left" Width="268" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Код" Binding="{Binding Id}" Width="30"/>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentName}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid x:Name="Status" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="300,118,0,43" HorizontalAlignment="Left" Width="268" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Код" Binding="{Binding ID_status}" Width="30"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding StatusName}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="300,216,101,-60" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="*"/>
-                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="*"/>
-                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="*"/>
-                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Button Content="Закрыть" Margin="260,190,20,0" VerticalAlignment="Top" Height="31" Click="backButton" BorderBrush="{x:Null}" Background="Red"/>
+        <ComboBox x:Name="EquipmentCB" SelectedItem="{Binding Id}" ItemsSource="{Binding Id}" DisplayMemberPath="EquipmentName" SelectedIndex="1" Margin="148,26,20,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="StatusCB" SelectedItem="{Binding ID_status}" ItemsSource="{Binding ID_status}" DisplayMemberPath="StatusName" SelectedIndex="1" Margin="149,118,20,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePic" Margin="149,148,20,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

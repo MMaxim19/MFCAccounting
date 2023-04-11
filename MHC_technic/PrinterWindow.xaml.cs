@@ -19,10 +19,10 @@ namespace MFC_technic
     /// </summary>
     public partial class PrinterWindow : Window
     {
-        MFCEntities MFC;
+        MFC_Entities MFC;
         public PrinterWindow()
         {
-            MFC = new MFCEntities();
+            MFC = new MFC_Entities();
             InitializeComponent();
             TablePrinter.ItemsSource = MFC.EquipmentModel.Where(x => x.EquipmentType == 2).ToList();
         }

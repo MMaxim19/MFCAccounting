@@ -19,10 +19,10 @@ namespace MFC_technic
     /// </summary>
     public partial class MonitorWindow : Window
     {
-        MFCEntities MFC;
+        MFC_Entities MFC;
         public MonitorWindow()
         {
-            MFC= new MFCEntities();
+            MFC= new MFC_Entities();
             InitializeComponent();
             TableMonitor.ItemsSource = MFC.EquipmentModel.Where(x => x.EquipmentType == 3).ToList();
         }

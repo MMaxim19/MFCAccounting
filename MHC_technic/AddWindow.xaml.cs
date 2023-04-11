@@ -19,9 +19,9 @@ namespace MFC_technic
     /// </summary>
     public partial class AddWindow : Window
     {
-        MFCEntities MFC;
+        MFC_Entities MFC;
         EquipmentAccounting Accounting;
-        public AddWindow(MFCEntities MFC)
+        public AddWindow(MFC_Entities MFC)
         {
             InitializeComponent();
             this.MFC = MFC;
@@ -30,7 +30,7 @@ namespace MFC_technic
             this.Equipment.ItemsSource = MFC.EquipmentModel.ToList();
             this.Status.ItemsSource = MFC.Status.ToList();
         }
-        public AddWindow(MFCEntities MFC, EquipmentAccounting accounting)
+        public AddWindow(MFC_Entities MFC, EquipmentAccounting accounting)
         {
             InitializeComponent();
             this.MFC = MFC;
@@ -43,7 +43,7 @@ namespace MFC_technic
         {
             EquipmentAccounting ups = new EquipmentAccounting();
             var model = Equipment.SelectedItem as EquipmentModel;
-            ups.Equipment = model.Id;
+            ups.Equipment = model.ID_ModelE;
             ups.SerialNumber = SerialNumber.Text;
             ups.InventoryNumber = InventoryNumber.Text;
             var upsStatus = Status.SelectedItem as Status;

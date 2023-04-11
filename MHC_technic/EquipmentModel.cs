@@ -20,10 +20,10 @@ namespace MFC_technic
             this.EquipmentAccounting = new HashSet<EquipmentAccounting>();
         }
     
-        public int Id { get; set; }
+        public int ID_ModelE { get; set; }
         public Nullable<int> EquipmentType { get; set; }
         public string EquipmentName { get; set; }
-        public Nullable<int> Price { get; set; }
+        public string Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentAccounting> EquipmentAccounting { get; set; }

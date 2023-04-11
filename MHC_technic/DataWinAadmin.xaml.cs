@@ -22,10 +22,11 @@ namespace MFC_technic
     /// </summary>
     public partial class DataWinAadmin : Window
     {
-        MFCEntities mfc;
+        public MFC_Entities mfc { get; set; }
+        public List<EquipmentAccounting> equipmentAccounting;
         public DataWinAadmin()
         {
-            mfc = new MFCEntities();
+            mfc = new MFC_Entities();
             InitializeComponent();
             TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
         }
@@ -84,10 +85,8 @@ namespace MFC_technic
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            mfc = new MFCEntities();
-            EquipmentAccounting eAccounting = TableGrid.SelectedItem as EquipmentAccounting;
-            EquipmentAccounting eAccounting1 = mfc.EquipmentAccounting.Where(x => x.ID == eAccounting.ID).Single();
-            EditWindow edit = new EditWindow(eAccounting1.ID, this);
+            var line = (sender as Button).DataContext as EquipmentAccounting;
+            EditWindow edit = new EditWindow(line, this);
             edit.Show();
         }
 
@@ -141,6 +140,11 @@ namespace MFC_technic
 
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
+            TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
+        }
+        public void ReadData()
+        {
+            mfc = new MFC_Entities();
             TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
         }
     }

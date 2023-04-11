@@ -19,10 +19,10 @@ namespace MFC_technic
     /// </summary>
     public partial class WorkerWin : Window
     {
-        MFCEntities mfc;
+        MFC_Entities mfc;
         public WorkerWin()
         {
-            mfc= new MFCEntities();
+            mfc= new MFC_Entities();
             InitializeComponent();
             Worker.ItemsSource = mfc.User.ToList();
         }

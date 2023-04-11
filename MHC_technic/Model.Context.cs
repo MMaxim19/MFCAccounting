@@ -13,10 +13,10 @@ namespace MFC_technic
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MFCEntities : DbContext
+    public partial class MFC_Entities : DbContext
     {
-        public MFCEntities()
-            : base("name=MFCEntities")
+        public MFC_Entities()
+            : base("name=MFC_Entities")
         {
         }
     

@@ -72,13 +72,13 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Grid x:Name="Filter" Background="#FFE6E2E2" Margin="150,350,400,0" Height="75" VerticalAlignment="Top">
-            <RadioButton x:Name="inWork" Content="В работе" HorizontalAlignment="Left" Margin="10,45,0,4" Checked="inWork_Checked"/>
-            <RadioButton x:Name="onRepair" Content="На ремонте" HorizontalAlignment="Left" Margin="125,45,0,4" Checked="onRepair_Checked"/>
-            <RadioButton x:Name="breakDown" Content="Списан" HorizontalAlignment="Left" Margin="125,18,0,31" Checked="breakDown_Checked"/>
-            <RadioButton x:Name="clearFilter" Content="Убрать фильтр" Margin="10,18,0,32" HorizontalAlignment="Left" Width="100" Checked="clearFilter_Checked"/>
+        <Grid x:Name="Filter" Background="#FFE6E2E2" Margin="150,0,0,25" Height="75" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="250">
+            <RadioButton x:Name="inWork" Content="В работе" Margin="10,0,0,4" Checked="inWork_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="68"/>
+            <RadioButton x:Name="onRepair" Content="На ремонте" Margin="125,0,0,4" Checked="onRepair_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="84"/>
+            <RadioButton x:Name="breakDown" Content="Списан" Margin="125,0,0,31" Checked="breakDown_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="59"/>
+            <RadioButton x:Name="clearFilter" Content="Убрать фильтр" Margin="10,0,0,32" Checked="clearFilter_Checked" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
         </Grid>
-        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="89,38,10,110" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black">
+        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="89,38,10,110" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="*"/>
                 <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="*"/>
@@ -101,18 +101,18 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Background="#FFC55527" Margin="0,0,711,0">
+        <Grid Background="#FFC55527" HorizontalAlignment="Left" Width="89">
             <Button Style="{DynamicResource buttonStyleAdmin}" Content="" HorizontalAlignment="Center" Margin="0,382,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,57,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" Height="32" VerticalAlignment="Top">
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" Margin="0,57,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/uninterrupted-power-supply.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="ИБП" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top"/>
+            <Label Content="ИБП" Margin="0,31,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Center" Width="34"/>
             <Label Content="Сервера" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top"/>
             <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,120,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" Height="32" VerticalAlignment="Top">
                 <Button.Background>

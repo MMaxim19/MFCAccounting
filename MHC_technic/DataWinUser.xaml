@@ -54,32 +54,32 @@
                 <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate}" Width="170"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Background="#FFC55527" HorizontalAlignment="Right" Width="74" Margin="0,0,726,0">
-            <Button Template="{DynamicResource buttonStyleUser}" Content="" Margin="0,400,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top" HorizontalAlignment="Center" Width="32">
+        <Grid Background="#FFC55527" HorizontalAlignment="Left" Width="74">
+            <Button Template="{DynamicResource buttonStyleUser}" Content="" Margin="0,400,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" HorizontalAlignment="Center" Margin="0,89,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" Height="32" VerticalAlignment="Top">
+            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,89,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/uninterrupted-power-supply.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="ИБП" HorizontalAlignment="Center" Margin="0,63,0,0" VerticalAlignment="Top"/>
-            <Label Content="Сервер" HorizontalAlignment="Center" Margin="0,126,0,0" VerticalAlignment="Top"/>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" HorizontalAlignment="Center" Margin="0,152,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" Height="32" VerticalAlignment="Top">
+            <Label Content="ИБП" Margin="0,63,0,0" HorizontalAlignment="Center" Width="34" Height="26" VerticalAlignment="Top"/>
+            <Label Content="Сервер" Margin="0,126,0,0" HorizontalAlignment="Center" Width="50" Height="26" VerticalAlignment="Top"/>
+            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,152,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/server.png"/>
                 </Button.Background>
             </Button>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" HorizontalAlignment="Center" Margin="0,215,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" Height="32" VerticalAlignment="Top">
+            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,215,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/tv.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="Монитор" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,189,0,0"/>
-            <Label Content="Принтер" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top"/>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" HorizontalAlignment="Center" Margin="0,278,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" Height="32" VerticalAlignment="Top">
+            <Label Content="Монитор" Margin="0,189,0,0" HorizontalAlignment="Center" Width="62" Height="26" VerticalAlignment="Top"/>
+            <Label Content="Принтер" HorizontalAlignment="Center" Margin="0,252,0,0" Height="26" VerticalAlignment="Top"/>
+            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,278,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/printer.png"/>
                 </Button.Background>

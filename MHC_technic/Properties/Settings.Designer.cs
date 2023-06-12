@@ -22,5 +22,16 @@ namespace MFC_technic.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MFC_Technic;Integrated Securit" +
+            "y=True")]
+        public string MFC_TechnicConnectionString {
+            get {
+                return ((string)(this["MFC_TechnicConnectionString"]));
+            }
+        }
     }
 }

@@ -18,6 +18,6 @@
         <Button Content="Закрыть" Margin="260,190,20,0" VerticalAlignment="Top" Height="31" Click="backButton" BorderBrush="{x:Null}" Background="Red"/>
         <ComboBox x:Name="EquipmentCB" SelectedItem="{Binding Id}" ItemsSource="{Binding Id}" DisplayMemberPath="EquipmentName" SelectedIndex="1" Margin="148,26,20,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="StatusCB" SelectedItem="{Binding ID_status}" ItemsSource="{Binding ID_status}" DisplayMemberPath="StatusName" SelectedIndex="1" Margin="149,118,20,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="DatePic" Margin="149,148,20,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePic" Margin="149,148,20,0" VerticalAlignment="Top" Text="{Binding DeliveryDate, StringFormat={}{0:dd.MM.yyyy}}"/>
     </Grid>
 </Window>

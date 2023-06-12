@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Учёт оборудования - Пользователь" Height="471" Width="800">
+        Title="Учёт оборудования - Пользователь" Height="545" Width="867" ResizeMode="NoResize">
     <Window.Resources>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
@@ -35,74 +35,32 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <Image Margin="0,0,2,1" Source="/mfc.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="86" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="240">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.749"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.582"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="69,38,10,90" Background="#FFE6E2E2" BorderBrush="{x:Null}" AutoGenerateColumns="False">
+        <DataGrid x:Name="TableGrid" Margin="0,67,0,0" Background="#FFE6E2E2" BorderBrush="{x:Null}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="250"/>
-                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="100"/>
-                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="100"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="75"/>
-                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate}" Width="170"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="Auto"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="Auto"/>
+                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="Auto"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="Auto"/>
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate, StringFormat={}{0:dd.MM.yyyy}}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Background="#FFC55527" HorizontalAlignment="Left" Width="74">
-            <Button Template="{DynamicResource buttonStyleUser}" Content="" Margin="0,400,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
+        <Grid Background="#FFC55527" Height="62" VerticalAlignment="Top" Margin="0,0,-1,0">
+            <Button Template="{DynamicResource buttonStyleUser}" Content="" Margin="810,18,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32">
                 <Button.Background>
                     <ImageBrush ImageSource="/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,89,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
+            <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="345,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254" TextChanged="searchBox_TextChanged"/>
+            <Label Content="Поиск" HorizontalAlignment="Left" Margin="296,2,0,0" VerticalAlignment="Top"/>
+            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="38,11,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Print" HorizontalAlignment="Left" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
-                    <ImageBrush ImageSource="/uninterrupted-power-supply.png"/>
+                    <ImageBrush ImageSource="/print.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="ИБП" Margin="0,63,0,0" HorizontalAlignment="Center" Width="34" Height="26" VerticalAlignment="Top"/>
-            <Label Content="Сервер" Margin="0,126,0,0" HorizontalAlignment="Center" Width="50" Height="26" VerticalAlignment="Top"/>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,152,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
-                <Button.Background>
-                    <ImageBrush ImageSource="/server.png"/>
-                </Button.Background>
-            </Button>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,215,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
-                <Button.Background>
-                    <ImageBrush ImageSource="/tv.png"/>
-                </Button.Background>
-            </Button>
-            <Label Content="Монитор" Margin="0,189,0,0" HorizontalAlignment="Center" Width="62" Height="26" VerticalAlignment="Top"/>
-            <Label Content="Принтер" HorizontalAlignment="Center" Margin="0,252,0,0" Height="26" VerticalAlignment="Top"/>
-            <Button Template="{DynamicResource buttonStyleUser}" Content="Button" Margin="0,278,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
-                <Button.Background>
-                    <ImageBrush ImageSource="/printer.png"/>
-                </Button.Background>
-            </Button>
+            <CheckBox x:Name="inWork" Content="В работе" HorizontalAlignment="Left" Margin="172,8,0,28" Checked="inWork_Checked" Unchecked="inWork_Unchecked" Height="26"/>
+            <CheckBox x:Name="onRepair" Content="На ремонте" HorizontalAlignment="Left" Margin="172,44,0,-8" Checked="onRepair_Checked" Unchecked="onRepair_Unchecked" Height="26"/>
+            <CheckBox x:Name="breakDown" Content="Списан" HorizontalAlignment="Left" Margin="172,26,0,10"  Checked="breakDown_Checked" Unchecked="breakDown_Unchecked" Height="26"/>
+            <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="93,1,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <Grid Background="#FFE6E2E2" Margin="130,349,400,10" d:IsHidden="True">
-            <RadioButton Content="В работе" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top"/>
-            <DatePicker HorizontalAlignment="Left" Margin="35,10,0,0" VerticalAlignment="Top"/>
-            <DatePicker HorizontalAlignment="Left" Margin="167,10,0,0" VerticalAlignment="Top"/>
-            <Label Content="С" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.4,0.002"/>
-            <Label Content="по" HorizontalAlignment="Left" Margin="138,9,0,0" VerticalAlignment="Top"/>
-            <RadioButton Content="На ремонте" HorizontalAlignment="Left" Margin="83,43,0,0" VerticalAlignment="Top"/>
-            <RadioButton Content="Списан" HorizontalAlignment="Left" Margin="172,43,0,0" VerticalAlignment="Top"/>
-        </Grid>
-        <Label Content="Поиск" HorizontalAlignment="Left" Margin="92,12,0,0" VerticalAlignment="Top" d:IsHidden="True"/>
-        <TextBox HorizontalAlignment="Left" Margin="141,16,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187" d:IsHidden="True"/>
-        <Grid x:Name="Filter" Background="#FFE6E2E2" Margin="150,370,440,0" Height="75" VerticalAlignment="Top">
-            <RadioButton x:Name="inWork" Content="В работе" HorizontalAlignment="Left" Margin="10,45,0,4"/>
-            <RadioButton x:Name="onRepair" Content="На ремонте" HorizontalAlignment="Left" Margin="116,45,0,4"/>
-            <RadioButton x:Name="breakDown" Content="Списан" HorizontalAlignment="Left" Margin="116,20,0,29"/>
-            <RadioButton x:Name="clearFilter" Content="Убрать фильтр" Margin="10,18,0,32" HorizontalAlignment="Left" Width="100"/>
-        </Grid>
-        <Label Content="Поиск" HorizontalAlignment="Left" Margin="79,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="123,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" TextChanged="searchBox_TextChanged"/>
     </Grid>
 </Window>

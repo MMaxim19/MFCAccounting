@@ -44,7 +44,7 @@ namespace MFC_technic
             }
             else
             {
-                EquipmentAccounting.Equipment = EquipmentCB.SelectedIndex + 1;
+                EquipmentAccounting.Equipment = EquipmentCB.SelectedIndex +1;
             }
             if (StatusCB.SelectedIndex == -1)
             {
@@ -52,7 +52,7 @@ namespace MFC_technic
             }
             else
             {
-                EquipmentAccounting.EquipmentStatus = StatusCB.SelectedIndex + 1;
+                EquipmentAccounting.EquipmentStatus = StatusCB.SelectedIndex +1;
             }
             EquipmentAccounting.SerialNumber = String.IsNullOrEmpty(SerialNumber.Text) ? string.Empty : ((SerialNumber.Text, @"\d+").Text);
             EquipmentAccounting.InventoryNumber = String.IsNullOrEmpty(InventoryNumber.Text) ? string.Empty : ((InventoryNumber.Text, @"\d+").Text);
@@ -75,10 +75,10 @@ namespace MFC_technic
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             EquipmentCB.ItemsSource = Mfc.EquipmentModel.ToList();
-            EquipmentCB.SelectedIndex = EquipmentAccounting.Equipment is null ? -1 : (int)EquipmentAccounting.Equipment;
+            EquipmentCB.SelectedIndex = EquipmentAccounting.Equipment is null ? -1 : (int)EquipmentAccounting.Equipment -1;
 
             StatusCB.ItemsSource = Mfc.Status.ToList();
-            StatusCB.SelectedIndex = EquipmentAccounting.EquipmentStatus is null ? -1 : (int)EquipmentAccounting.EquipmentStatus;
+            StatusCB.SelectedIndex = EquipmentAccounting.EquipmentStatus is null ? -1 : (int)EquipmentAccounting.EquipmentStatus -1;
         }
     }
 }

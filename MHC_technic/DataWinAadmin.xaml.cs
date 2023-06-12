@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -11,9 +12,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MFC_technic
 {
@@ -22,6 +26,7 @@ namespace MFC_technic
     /// </summary>
     public partial class DataWinAadmin : Window
     {
+        public FlowDocument flowDoc;
         public MFC_Entities mfc { get; set; }
         public List<EquipmentAccounting> equipmentAccounting;
         public DataWinAadmin()
@@ -60,13 +65,6 @@ namespace MFC_technic
         {
             ServerWindow Server = new ServerWindow();
             Server.Show();
-        }
-
-        private void UserTable(object sender, RoutedEventArgs e)
-        {
-            WorkerWin worker = new WorkerWin();
-            worker.Show();
-            Close();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -119,7 +117,15 @@ namespace MFC_technic
             TableGrid.ItemsSource = mfc.EquipmentAccounting.Where(x => x.EquipmentStatus == 3).ToList();
         }
 
-        private void clearFilter_Checked(object sender, RoutedEventArgs e)
+        private void breakDown_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
+        }
+        private void inWork_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
+        }
+        private void onRepair_Unchecked(object sender, RoutedEventArgs e)
         {
             TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
         }
@@ -146,6 +152,43 @@ namespace MFC_technic
         {
             mfc = new MFC_Entities();
             TableGrid.ItemsSource = mfc.EquipmentAccounting.ToList();
+        }
+
+        private void Print(object sender, RoutedEventArgs e)
+        {
+            TableGrid.Columns[5].Visibility = Visibility.Hidden;
+            TableGrid.Columns[6].Visibility = Visibility.Hidden;
+            System.Windows.Controls.PrintDialog Printdlg = new System.Windows.Controls.PrintDialog();
+            if ((bool)Printdlg.ShowDialog().GetValueOrDefault())
+            {
+                Size pageSize = new Size(Printdlg.PrintableAreaWidth, Printdlg.PrintableAreaHeight);
+                // sizing of the element.
+                TableGrid.Measure(pageSize);
+                TableGrid.Arrange(new Rect(0, 0, pageSize.Width, pageSize.Height));
+                Printdlg.PrintVisual(TableGrid, Title);
+            }
+            TableGrid.Columns[5].Visibility = Visibility.Visible;
+            TableGrid.Columns[6].Visibility = Visibility.Visible;
+        }
+
+        public DataGrid GetTableGrid()
+        {
+            return TableGrid;
+        }
+
+        private void ExportExcel(object sender, RoutedEventArgs e)
+        {
+            TableGrid.SelectAllCells();
+            TableGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, TableGrid);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            TableGrid.UnselectAllCells();
+            StreamWriter file = new StreamWriter(@"C:\Users\Максим\Desktop\test1.xls", true, Encoding.GetEncoding(1251));
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+            MessageBox.Show("Данные экспортированы в Excel!", "Успешно!");
+            System.Diagnostics.Process.Start(@"C:\Users\Максим\Desktop\test1.xls");
         }
     }
 }

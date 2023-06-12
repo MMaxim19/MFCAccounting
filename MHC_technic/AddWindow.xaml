@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Добавление записи" Height="270" Width="400">
+        Title="Добавление записи" Height="270" Width="400" Loaded="Window_Loaded">
     <Grid>
         <ComboBox x:Name="Equipment" SelectedItem="{Binding Equipment}" DisplayMemberPath="EquipmentName" HorizontalAlignment="Left" Margin="148,24,0,0" VerticalAlignment="Top" Width="220"/>
         <Label Content="Оборудование:" HorizontalAlignment="Left" Margin="48,22,0,0" VerticalAlignment="Top"/>
@@ -13,7 +13,7 @@
         <Label Content="Серийный номер:" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" x:Name="InventoryNumber" Margin="148,88,0,0" TextWrapping="Wrap" Text="{Binding InventoryNumber}" VerticalAlignment="Top" Width="220"/>
         <Label Content="Инвентарный номер:" HorizontalAlignment="Left" Margin="16,84,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="Status" SelectedItem="{Binding EquipmentStatus}" DisplayMemberPath="StatusName" HorizontalAlignment="Left" Margin="148,117,0,0" VerticalAlignment="Top" Width="220"/>
+        <ComboBox x:Name="Status" SelectedItem="{Binding EquipmentStatus}" DisplayMemberPath="StatusName" HorizontalAlignment="Left" Margin="148,117,0,0" VerticalAlignment="Top" Width="220" IsReadOnly="True" IsSynchronizedWithCurrentItem="True" SelectedIndex="0"/>
         <Label Content="Статус:" HorizontalAlignment="Left" Margin="96,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Дата доставки:" HorizontalAlignment="Left" Margin="53,146,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left"  Margin="148,148,0,0" VerticalAlignment="Top" Width="220" x:Name="DeliveryDate"/>

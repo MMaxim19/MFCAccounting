@@ -22,7 +22,7 @@ namespace MHC_technic
     /// </summary>
     public partial class MainWindow : Window
     {
-        MFC_Entities MFC;
+        public MFC_Entities MFC;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,15 +43,15 @@ namespace MHC_technic
                     switch (userAuth.UserRole)
                     {
                         case 1:
-                            MessageBox.Show("Добро пожаловать, администратор" + " " + userAuth.UserSurname + " " + userAuth.UserName, "Успешно!");
+                            MessageBox.Show("Добро пожаловать, администратор", "Успешно!");
                             DataWinAadmin windowAdmin = new DataWinAadmin();
                             windowAdmin.Show();
                             Close();
                             break;
                         case 2:
-                            MessageBox.Show("Добро пожаловать, пользователь" + " " + userAuth.UserSurname + " " + userAuth.UserName, "Успешно!");
-                            DataWinUser windowUser = new DataWinUser();
-                            windowUser.Show();
+                            MessageBox.Show("Добро пожаловать, пользователь", "Успешно!");
+                            DataWinUser windowUser1 = new DataWinUser();
+                            windowUser1.Show();
                             Close();
                             break;
                     }

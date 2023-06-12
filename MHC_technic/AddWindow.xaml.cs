@@ -29,6 +29,7 @@ namespace MFC_technic
             this.DataContext = Accounting;
             this.Equipment.ItemsSource = MFC.EquipmentModel.ToList();
             this.Status.ItemsSource = MFC.Status.ToList();
+            this.Status.MaxDropDownHeight= 0;
         }
         public AddWindow(MFC_Entities MFC, EquipmentAccounting accounting)
         {
@@ -69,6 +70,11 @@ namespace MFC_technic
         private void backButton(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Status.SelectedIndex= 0;
         }
     }
 }

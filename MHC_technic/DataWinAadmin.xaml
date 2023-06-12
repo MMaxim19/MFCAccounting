@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Учёт оборудования - Администратор" Height="471" Width="800">
+        Title="Учёт оборудования - Администратор" Height="575" Width="894" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -62,93 +62,85 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Image Margin="0,0,2,1" Source="/mfc.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="86" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="240">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.749"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.582"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Grid x:Name="Filter" Background="#FFE6E2E2" Margin="150,0,0,25" Height="75" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="250">
-            <RadioButton x:Name="inWork" Content="В работе" Margin="10,0,0,4" Checked="inWork_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="68"/>
-            <RadioButton x:Name="onRepair" Content="На ремонте" Margin="125,0,0,4" Checked="onRepair_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="84"/>
-            <RadioButton x:Name="breakDown" Content="Списан" Margin="125,0,0,31" Checked="breakDown_Checked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="59"/>
-            <RadioButton x:Name="clearFilter" Content="Убрать фильтр" Margin="10,0,0,32" Checked="clearFilter_Checked" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
-        </Grid>
-        <DataGrid x:Name="TableGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="89,38,10,110" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black" IsReadOnly="True">
+        <DataGrid x:Name="TableGrid" Margin="0,67,0,0" Background="#FFE6E2E2" AutoGenerateColumns="False" BorderBrush="{x:Null}" Foreground="Black" IsReadOnly="True" AutomationProperties.IsOffscreenBehavior="Onscreen" FontFamily="Calibri" VerticalAlignment="Top" HorizontalAlignment="Center">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="*"/>
-                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="*"/>
-                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="*"/>
-                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate}" Width="*"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding EquipmentModel.EquipmentName}" Width="Auto" CanUserResize="False"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding SerialNumber}" Width="Auto" CanUserResize="False"/>
+                <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventoryNumber}" Width="Auto" CanUserResize="False"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusName}" Width="Auto" CanUserResize="False"/>
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate, StringFormat={}{0:dd.MM.yyyy}}" Width="Auto" CanUserResize="False"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="EditButton_Click" Background="YellowGreen">Редактировать</Button>
+                            <Button x:Name="EditBut" Click="EditButton_Click" Background="YellowGreen" Width="Auto">Редактировать</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="DeleteButton_Click" Background="Red">Удалить</Button>
+                            <Button x:Name="DelBut" Click="DeleteButton_Click" Background="Red" Width="Auto">Удалить</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Background="#FFC55527" HorizontalAlignment="Left" Width="89">
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="" HorizontalAlignment="Center" Margin="0,382,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top">
+        <Grid Background="#FFC55527" HorizontalAlignment="Center" Width="894" Height="62" VerticalAlignment="Top">
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="" HorizontalAlignment="Left" Margin="852,26,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnBack" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" Margin="0,57,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" HorizontalAlignment="Center" Width="32" Height="32" VerticalAlignment="Top">
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" Margin="25,26,0,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UPSTable" HorizontalAlignment="Left" Width="32" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/uninterrupted-power-supply.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="ИБП" Margin="0,31,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Center" Width="34"/>
-            <Label Content="Сервера" HorizontalAlignment="Center" Margin="0,94,0,0" VerticalAlignment="Top"/>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,120,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" Height="32" VerticalAlignment="Top">
+            <Label Content="ИБП" Margin="23,0,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="34"/>
+            <Label Content="Сервера" HorizontalAlignment="Left" Margin="77,0,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="89,26,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ServerTable" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/server.png"/>
                 </Button.Background>
             </Button>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" Height="32" VerticalAlignment="Top" Margin="0,184,0,0">
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="MonitorTable" Height="32" VerticalAlignment="Top" Margin="164,26,0,0">
                 <Button.Background>
                     <ImageBrush ImageSource="/tv.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="Мониторы" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top"/>
-            <Label Content="Принтера" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top"/>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,246,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" Height="32" VerticalAlignment="Top">
+            <Label Content="Мониторы" HorizontalAlignment="Left" Margin="146,-1,0,0" VerticalAlignment="Top"/>
+            <Label Content="Принтера" HorizontalAlignment="Left" Margin="223,0,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="239,26,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="PrinterTable" Height="32" VerticalAlignment="Top">
                 <Button.Background>
                     <ImageBrush ImageSource="/printer.png"/>
                 </Button.Background>
             </Button>
-            <Label Content="Сотрудники" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top"/>
-            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Center" Margin="0,309,0,0" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UserTable" Height="32" VerticalAlignment="Top">
+            <CheckBox x:Name="breakDown" Content="Списан" Margin="456,0,0,28" Checked="breakDown_Checked" Unchecked="breakDown_Unchecked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="59"/>
+            <CheckBox x:Name="inWork" Content="В работе" Margin="520,0,0,28" Checked="inWork_Checked" Unchecked="inWork_Unchecked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="68"/>
+            <CheckBox x:Name="onRepair" Content="На ремонте" Margin="593,0,0,28" Checked="onRepair_Checked" Unchecked="onRepair_Unchecked" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="84"/>
+            <Label Content="Фильтрация:" HorizontalAlignment="Left" Margin="377,2,0,0" VerticalAlignment="Top"/>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="717,26,0,0" VerticalAlignment="Top" Click="Print" Width="32" Height="32" Foreground="{x:Null}" BorderBrush="{x:Null}">
                 <Button.Background>
-                    <ImageBrush ImageSource="/worker.png"/>
+                    <ImageBrush ImageSource="/print.png"/>
                 </Button.Background>
             </Button>
+            <Button Style="{DynamicResource buttonStyleAdmin}" x:Name="AddButton" Content="Button" Margin="750,26,0,0" VerticalAlignment="Top" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="AddButton_Click" HorizontalAlignment="Left" Width="32">
+                <Button.Background>
+                    <ImageBrush ImageSource="/add-button.png"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="783,26,0,0" VerticalAlignment="Top" Click="ExportExcel" Width="32" Height="32" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/xls.png"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="816,26,0,0" VerticalAlignment="Top" Width="32" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="RefreshTable">
+                <Button.Background>
+                    <ImageBrush ImageSource="/reload.png"/>
+                </Button.Background>
+            </Button>
+            <Label x:Name="serachLabel" Content="Поиск" HorizontalAlignment="Left" Margin="377,26,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="430,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="263" TextChanged="searchBox_TextChanged"/>
         </Grid>
-        <Label x:Name="serachLabel" Content="Поиск" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Margin="139,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" TextChanged="searchBox_TextChanged"/>
-        <Button Style="{DynamicResource buttonStyleAdmin}" x:Name="AddButton" Content="Button" HorizontalAlignment="Center" Margin="0,7,0,0" VerticalAlignment="Top" Width="32" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="AddButton_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/add-button.png"/>
-            </Button.Background>
-        </Button>
-        <Button Style="{DynamicResource buttonStyleAdmin}" Content="Button" HorizontalAlignment="Left" Margin="451,7,0,0" VerticalAlignment="Top" Width="32" Height="32" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="RefreshTable">
-            <Button.Background>
-                <ImageBrush ImageSource="/reload.png"/>
-            </Button.Background>
-        </Button>
     </Grid>
 </Window>

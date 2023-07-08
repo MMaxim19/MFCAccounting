@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MHC_technic"
         mc:Ignorable="d"
-        Title="Авторизация" Height="264" Width="344" ResizeMode="NoResize">
+        Title="Авторизация" Height="264" Width="344" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox x:Name="Login" Margin="100,99,81,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Логин:" HorizontalAlignment="Left" Margin="44,95,0,0" VerticalAlignment="Top"/>

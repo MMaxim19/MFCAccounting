@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Учёт оборудования - Пользователь" Height="545" Width="867" ResizeMode="NoResize">
+        Title="Учёт оборудования - Пользователь" Height="545" Width="867" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>

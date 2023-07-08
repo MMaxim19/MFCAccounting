@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Добавление записи" Height="270" Width="400" Loaded="Window_Loaded">
+        Title="Добавление записи" Height="270" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <ComboBox x:Name="Equipment" SelectedItem="{Binding Equipment}" DisplayMemberPath="EquipmentName" HorizontalAlignment="Left" Margin="148,24,0,0" VerticalAlignment="Top" Width="220"/>
         <Label Content="Оборудование:" HorizontalAlignment="Left" Margin="48,22,0,0" VerticalAlignment="Top"/>

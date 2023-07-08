@@ -178,6 +178,7 @@ namespace MFC_technic
 
         private void ExportExcel(object sender, RoutedEventArgs e)
         {
+            GetTableGrid();
             TableGrid.SelectAllCells();
             TableGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
             ApplicationCommands.Copy.Execute(null, TableGrid);

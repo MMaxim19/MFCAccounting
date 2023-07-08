@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MFC_technic"
         mc:Ignorable="d"
-        Title="Учёт оборудования - Администратор" Height="575" Width="894" ResizeMode="NoResize">
+        Title="Учёт оборудования - Администратор" Height="575" Width="894" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
